@@ -1,0 +1,205 @@
+Assignment-1
+import java.util.Scanner;
+class Student
+{
+public static void main(String args[])
+{
+int p=0,q=0,r=0,s=0;
+do
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter id");
+int id=sc.nextInt();
+int out1=10;
+switch(id)
+{
+case 1:
+        if(p==1)
+        {
+        System.out.println("Already Attempted");
+        break;
+        }
+        else
+       {
+        p=1;
+        System.out.println("1st Question is 1*3=?");
+        Scanner one=new Scanner(System.in);
+        int a1=one.nextInt();
+        if(a1==3)
+        {
+          s=s+out1;
+         }
+         System.out.println("2nd Question is 2*3=?");
+        //Scanner one=new Scanner(System.in);
+        int a2=one.nextInt();
+        if(a2==6)
+        {
+          s=s+out1;
+         }
+         System.out.println("3rd Question is 3*3=?");
+        //Scanner one=new Scanner(System.in);
+        int a3=one.nextInt();
+        if(a3==9)
+        {
+          s=s+out1;
+         }
+        }
+        break;
+case 2: 
+        if(q==1)
+        {
+        System.out.println("Already Attempted");
+        break;
+        }
+        else
+       {
+        q=1;
+        System.out.println("1st Question is 1*3=?");
+        Scanner two=new Scanner(System.in);
+        int b1=two.nextInt();
+        if(b1==3)
+        {
+          s=s+out1;
+         }
+         System.out.println("2nd Question is 2*3=?");
+        //Scanner two=new Scanner(System.in);
+        int b2=two.nextInt();
+        if(b2==6)
+        {
+          s=s+out1;
+         }
+         System.out.println("3rd Question is 3*3=?");
+        //Scanner two=new Scanner(System.in);
+        int b3=two.nextInt();
+        if(b3==9)
+        {
+          s=s+out1;
+         }
+       }
+        break;
+case 3: 
+        if(r==1)
+        {
+        System.out.println("Already Attempted");
+        break;
+        }
+        else
+       {
+        r=1;
+        System.out.println("1st Question is 1*3=?");
+        Scanner three=new Scanner(System.in);
+        int c1=three.nextInt();
+        if(c1==3)
+        {
+          s=s+out1;
+         }
+         System.out.println("2nd Question is 2*3=?");
+        //Scanner three=new Scanner(System.in);
+        int c2=three.nextInt();
+        if(c2==6)
+        {
+          s=s+out1;
+         }
+         System.out.println("3rd Question is 3*3=?");
+        //Scanner three=new Scanner(System.in);
+        int c3=three.nextInt();
+        if(c3==9)
+        {
+          s=s+out1;
+         }
+        }
+        break;
+}
+System.out.println("Do you want to continue y/n?");
+Scanner yn=new Scanner(System.in);
+char check=yn.next().charAt(0);
+if(check=='y')
+continue;
+else
+break;
+}
+while(p+q+r<3);
+if(s>70)
+{
+s=s+10;
+}
+System.out.println(s);
+}
+}
+
+
+Assignment-2
+
+import java.util.Scanner;
+class EmpDetails
+{
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter number of details you want to store:");
+int n=sc.nextInt();
+
+int []id= new int[n];
+String []name=new String[n];
+float []salary=new float[n];
+String []desg=new String[n];
+
+for(int i=0;i<n;i++)
+{
+System.out.println("Enter id of emp ");
+id[i]=sc.nextInt();
+sc.nextLine();
+
+System.out.println("Enter name of emp");
+name[i]=sc.nextLine();
+
+System.out.println("Enter salary of emp");
+salary[i]=sc.nextFloat();
+sc.nextLine();
+
+System.out.println("Enter designation of emp");
+desg[i]=sc.nextLine();
+System.out.println("\n");
+}
+
+for(int k=0;k<n;k++)
+{
+	float hra,da,pf;
+	hra=salary[k]*0.1f;
+	da=salary[k]*0.07f;
+	pf=salary[k]*0.05f;
+	if(desg[k].equals("manager"))
+	{
+		salary[k]=(salary[k]+hra+da-pf)+(salary[k]*0.15f);
+		System.out.println("\n");
+		System.out.println("Details of Employee:"+(k+1));
+		System.out.println("id="+id[k]);
+		System.out.println("Name="+name[k]);
+		System.out.println("Salary="+salary[k]);
+		System.out.println("Designation="+desg[k]);
+	}
+	else if(desg[k].equals("developer"))
+	{
+		salary[k]=(salary[k]+hra+da-pf)+(salary[k]*0.1f);
+		System.out.println("\n");
+		System.out.println("Details of Employee:"+(k+1));
+		System.out.println("id="+id[k]);
+		System.out.println("Name="+name[k]);
+		System.out.println("Salary="+salary[k]);
+		System.out.println("Designation="+desg[k]);
+	}
+	else
+	{
+		salary[k]=(salary[k]+hra+da-pf)+(salary[k]*0.05f);
+		System.out.println("\n");
+		System.out.println("Details of Employee:"+(k+1));
+		System.out.println("id="+id[k]);
+		System.out.println("Name="+name[k]);
+		System.out.println("Salary="+salary[k]);
+		System.out.println("Designation="+desg[k]);
+	}
+}
+}
+}
+
+   
