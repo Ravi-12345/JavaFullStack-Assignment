@@ -1,4 +1,4 @@
-
+pending 2nd& 7th question in mysql aggregate functions and 7th question in functions.
 11/01/2020
 
 Select Clause with Where clause 
