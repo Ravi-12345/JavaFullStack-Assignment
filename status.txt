@@ -1,5 +1,10 @@
 MySQL
-pending 2nd& 7th question in mysql aggregate functions and 7th question in functions.
+1.In mysql aggregate functions,2nd& 7th question pending.
+2.In functions, 7th question pending .
 
 Java
-pending Assignment-4
+1.Assignment-1 (done)
+2.Assignment-2 (done)
+3.Assignment-3 (done)
+4.Assignment-4 (pending)
+5.Assignment-5 (done)

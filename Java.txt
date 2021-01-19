@@ -306,6 +306,79 @@ empd.display();
 }
 }
 
+Assignemnt-5
+import java.util.Scanner;
+class Student
+{
+int id,age;
+String name;
+int marks[]=new int[4];
+int m1,m2,m3,m4;
+float s=0;
+Scanner sc=new Scanner(System.in);
+char grade;
+void read()
+{
+System.out.println("Enter id");
+id=sc.nextInt();
+System.out.println("Enter name");
+name=sc.nextLine();
+System.out.println("Enter age");
+age=sc.nextInt();
+System.out.println("Enter marks");
+for(int i=0;i<marks.length;i++)
+{
+marks[i]=sc.nextInt();
+s=s+marks[i];
+}
+}
+void calculateGrade()
+{
+float avg;
+avg=(s/4);
+if(avg>90)
+grade='A';
+else if(avg>80)
+grade='B';
+else if(avg>70)
+grade='C';
+else if(avg>55)
+grade='D';
+else
+grade='E';
+}
+void display()
+{
+System.out.println("id"+id);
+System.out.println("name"+name);
+System.out.println("age"+age);
+System.out.println("grade"+grade);
+}
+}
+class StudentTest
+{
+public static void main(String args[])
+{
+Scanner obj=new Scanner(System.in);
+System.out.println("Enter number of records");
+int n=obj.nextInt();
+Student std[]=new Student[n];
+for(int i=0;i<n;i++)
+{
+std[i]=new Student();
+std[i].read();
+}
+for(int i=0;i<n;i++)
+{
+std[i].calculateGrade();
+}
+for(int i=0;i<n;i++)
+{
+std[i].display();
+}
+}
+}
+
 
 
 
