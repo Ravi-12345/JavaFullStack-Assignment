@@ -129,7 +129,6 @@ System.out.println(s);
 
 
 Assignment-2
-
 import java.util.Scanner;
 class EmpDetails
 {
@@ -202,8 +201,8 @@ for(int k=0;k<n;k++)
 }
 }
 
-Assignment -3
 
+Assignment -3
 import java.util.Scanner;
 class EmployeeDetails
 {
@@ -289,7 +288,6 @@ for(int k=0;k<n;k++)
 	System.out.println("\n");
 }	
 }
-
 }
 class Employee
 {
@@ -305,6 +303,116 @@ empd.bonus();
 empd.display();
 }
 }
+
+
+Assignment-4
+import java.util.Scanner;
+class Employee
+{
+int id;
+String name;
+float salary;
+Scanner obj=new Scanner(System.in);
+Address add=new Address();
+void read()
+{
+System.out.println("Enter id: ");
+id=obj.nextInt();
+System.out.println("Enter name: ");
+obj.nextLine();
+name=obj.nextLine();
+System.out.println("Enter salary: ");
+salary=obj.nextFloat();
+}
+void calSalary()
+{
+float hra,da,pf;
+hra=salary*0.1f;
+da=salary*0.07f;
+pf=salary*0.05f;
+salary=salary+hra+da-pf;
+}
+void display()
+{
+System.out.println("id= "+id);
+System.out.println("name= "+name);
+System.out.println("Salary= "+salary);
+}
+}
+class Manager extends Employee
+{
+int nom;
+void readMgr()
+{
+System.out.println("Enter number of managers: ");
+nom=obj.nextInt();
+add.readAdd();
+}
+void disMgr()
+{
+System.out.println("Enter number of managers: "+nom);
+add.disAdd();
+}
+}
+class Programmer extends Employee
+{
+String pname;
+void readPrg()
+{
+System.out.println("Enter project name: ");
+obj.nextLine();
+pname=obj.nextLine();
+add.readAdd();
+}
+void disPrg()
+{
+System.out.println("the project name: "+pname);
+add.disAdd();
+}
+}
+class Address
+{
+String city;
+String state;
+int pincode;
+Scanner sc=new Scanner(System.in);
+void readAdd()
+{
+System.out.println("Enter city name: ");
+city=sc.nextLine();
+System.out.println("Enter State name: ");
+state=sc.nextLine();
+System.out.println("Enter pincode: ");
+pincode=sc.nextInt();
+}
+void disAdd()
+{
+System.out.println("City: "+city);
+System.out.println("State: "+state);
+System.out.println("pincode: "+pincode);
+}
+}
+class EmployeeTest1
+{
+public static void main(String args[])
+{
+Manager mgr=new Manager();
+mgr.read();
+mgr.readMgr();
+mgr.calSalary();
+Programmer prg=new Programmer();
+prg.read();
+prg.readPrg();
+prg.calSalary();
+System.out.println("Manager Details --");
+mgr.display();
+mgr.disMgr();
+System.out.println("Programmer Details--");
+prg.display();
+prg.disPrg();
+}
+}
+
 
 Assignemnt-5
 import java.util.Scanner;
@@ -377,6 +485,55 @@ for(int i=0;i<n;i++)
 std[i].display();
 }
 }
+}
+
+
+Assignment-7
+import java.util.Arrays;
+import java.util.Scanner;
+ 
+public class Sorting
+{
+    public static void main(String[] args) 
+    {
+        int n;
+        String name;
+        Scanner s = new Scanner(System.in);
+         
+        
+        System.out.print("Enter number of strings : ");
+        n = s.nextInt();
+         
+         
+        String str[] = new String[n];
+       
+         
+  
+        System.out.println("Enter the Strings one by one:");
+	s.nextLine();
+        for(int i = 0; i < n; i++)
+        {
+            str[i] = s.nextLine();
+        }
+      
+        
+        
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j = i + 1; j < n; j++) 
+            { 
+                if (str[i].compareTo(str[j]) > 0) 
+                {
+                    name = str[i];
+                    str[i] = str[j];
+                    str[j] =name ;
+                }
+            }
+        }
+         
+       
+        System.out.print("Strings in Sorted Order: " + Arrays.toString(str));
+    }
 }
 
 
