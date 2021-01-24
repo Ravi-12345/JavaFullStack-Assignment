@@ -1,10 +1,21 @@
 MySQL
-1.In mysql aggregate functions,2nd& 7th question pending.
-2.In functions, 7th question pending .
+1.Select Clause with Where clause(done) 
+2.Join(done)
+3.Functions(done)
+4.MySQL Aggregate function(done) 
+5.DML Operation(done)
+6.DDL Assignments  with Constraints(done)
+7.Sub Query(done)
 
 Java
 1.Assignment-1 (done)
 2.Assignment-2 (done)
 3.Assignment-3 (done)
-4.Assignment-4 (pending)
+4.Assignment-4 (done)
 5.Assignment-5 (done)
+6.Assignment-6 (done)
+7.Assignment-7 (done)
+8.Assignment-8 (pending)
+9.Assignment-9 (pending)
+10.2nd mini project sprint-1(pending)
+11.2nd mini project sprint-2(pending)

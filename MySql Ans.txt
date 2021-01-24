@@ -1,14 +1,11 @@
-pending 2nd& 7th question in mysql aggregate functions and 7th question in functions.
-11/01/2020
+MySql Answers
 
 Select Clause with Where clause 
 
 1) Display details of jobs where the minimum salary is greater than 10000.
     select * from jobs where min_salary>10000;
-
 2) Display the first name and join date of the employees who joined between 2002 and 2005.
    select first_name,hire_date from employees where hire_date between 2002 and 2005;
-
 3) Display first name and join date of the employees who is either IT Programmer or Sales Man.
    select first_name,hire_date from employees where job_id='it_prog' or job_id='Sa_Man';
 4) Display first name, salary, commission pct, and hire date for employees with salary less than 10000.
@@ -32,7 +29,6 @@ Join
     select department_name,first_name from departments d join employees e on(d.manager_id=e.employee_id);
 3) Display department name, manager name, and city.
     SELECT DEPARTMENT_NAME, FIRST_NAME FROM DEPARTMENTS D JOIN EMPLOYEES E ON (D.MANAGER_ID=E.EMPLOYEE_ID);
-
 4) Display country name, city, and department name.
     SELECT COUNTRY_NAME, CITY, DEPARTMENT_NAME FROM COUNTRIES JOIN LOCATIONS USING (COUNTRY_ID) JOIN DEPARTMENTS USING (LOCATION_ID);
 5) Display employee name and country in which he is working.
@@ -53,7 +49,7 @@ Functions
 6. Display first name in upper case and email address in lower case for employees where the first name and email address are same irrespective of the case.
    SELECT UPPER(FIRST_NAME), LOWER(EMAIL) FROM EMPLOYEES WHERE UPPER(FIRST_NAME)= UPPER(EMAIL);
 7. Display employees who joined in the current year.
-
+   select first_name,hire_date from employees where hire_date like '1997%';
 8. Display the number of days between system date and 1st January 1995.
    SELECT SYSDATE() -('01-jan-2011') FROM dual;
 9. Display how many employees joined in each month of the current year.
@@ -63,9 +59,7 @@ MySQL Aggregate function
 1. Display employee ID and the date on which he ended his previous job.
    SELECT EMPLOYEE_ID, MAX(END_DATE) FROM JOB_HISTORY GROUP BY EMPLOYEE_ID;
 2. Display number of employees joined after 15th of the month.
-
- 
-
+   select count(*) from employees where hire_date > '1995-01-15'; 
 3. Display the country ID and number of cities we have in the country.
    SELECT COUNTRY_ID,  COUNT(*)  FROM LOCATIONS GROUP BY COUNTRY_ID;
 4. Display average salary of employees in each department who have commission percentage.
@@ -75,7 +69,7 @@ MySQL Aggregate function
 6. Display job ID for jobs with average salary more than 10000.
    SELECT JOB_ID, AVG(SALARY) FROM EMPLOYEES GROUP BY JOB_ID HAVING AVG(SALARY)>10000;
 7. Display years in which more than 10 employees joined.
-
+   select count(employee_id),date_format(hire_date,'%y') from employees group by date_format(hire_date,'%y') having count(employee_id)>10;
 8. Display departments in which more than five employees have commission percentage.
   SELECT DEPARTMENT_ID FROM EMPLOYEES WHERE COMMISSION_PCT IS NOT NULLGROUP BY DEPARTMENT_ID HAVING COUNT(COMMISSION_PCT)>5;
 9. Display department name and number of employees in the department.
