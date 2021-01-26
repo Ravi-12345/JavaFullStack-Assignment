@@ -870,6 +870,157 @@ public class Sorting
 }
 
 
+Assignment-8
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class Student
+{
+    int rollno;
+    String name;
+    float salary;
+ 
+    public Student(int rollno, String name,
+                               float salary)
+    {
+        this.rollno = rollno;
+        this.name = name;
+        this.salary = salary;
+    }
+ 
+    public String toString()
+    {
+        return this.rollno + " " + this.name +
+                           " " + this.salary;
+    }
+}
+ 
+class Sortbyroll implements Comparator<Student>
+{
+   
+    public int compare(Student a, Student b)
+    {
+        return a.rollno - b.rollno;
+    }
+}
+ 
+class Sortbyname implements Comparator<Student>
+{
+    public int compare(Student a, Student b)
+    {
+        return a.name.compareTo(b.name);
+    }
+}
+class Sortbysalary implements Comparator<Student>
+{
+    
+    public int compare(Student a, Student b)
+    {
+        return (int)(a.salary - b.salary);
+    }
+}
+ 
+
+class Main
+{
+    public static void main (String[] args)
+    {
+        ArrayList<Student> ar = new ArrayList<Student>();
+        ar.add(new Student(111, "bbbb", 30000));
+        ar.add(new Student(131, "aaaa", 20000));
+        ar.add(new Student(121, "cccc", 50000));
+ 
+        System.out.println("Unsorted");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+ 
+        Collections.sort(ar, new Sortbyroll());
+        System.out.println("\nSorted by Id Asd");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+        Collections.reverse(ar);
+        System.out.println("\nSorted by Id Desc");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+ 
+        Collections.sort(ar, new Sortbyname());
+        System.out.println("\nSorted by name Asc");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+        Collections.reverse(ar);
+        System.out.println("\nSorted by name Desc");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+        
+        Collections.sort(ar, new Sortbysalary());
+        System.out.println("\nSorted by Salary Asc");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+        Collections.reverse(ar);
+        System.out.println("\nSorted by Salary Desc");
+        for (int i=0; i<ar.size(); i++)
+            System.out.println(ar.get(i));
+    }
+}
+
+
+Assignment-9
+package com;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+public class File {
+
+   
+	public static void main(String[] args) throws Exception{
+		FileInputStream fis = new FileInputStream("C:\\Users\\MYPC\\OneDrive\\Desktop\\Ravi\\status.txt");
+		//DataInputStream dis=new DataInputStream(fis);
+		InputStreamReader input = new InputStreamReader(fis); 
+        BufferedReader reader = new BufferedReader(input);
+		
+		
+	
+		int ch;
+		String line;
+		int countWord=0;
+		int characterCount=0;
+		
+	   while((line = reader.readLine()) != null) 
+        { 
+           
+                characterCount += line.length(); 
+                  
+                // \\s+ is the space delimiter in java 
+                String[] wordList = line.split("\\s+"); 
+                  
+                countWord += wordList.length; 
+        } 
+		
+		System.out.println("Total number of characters = " + characterCount);
+		System.out.println("Total word count = " + countWord); 
+		FileInputStream fis2 = new FileInputStream("C:\\Users\\MYPC\\OneDrive\\Desktop\\Ravi\\status.txt");
+		FileOutputStream fos = new FileOutputStream("info1.txt");
+		FileOutputStream fos1 = new FileOutputStream("info2.txt");
+		while((ch=fis2.read()) != -1){	//'a' or '@' EOF in java -1 is consider as EOF 
+			fos.write(Character.toUpperCase(ch));
+			fos1.write(Character.toLowerCase(ch));
+			
+		}
+		
+		fis.close();
+		fis2.close();
+		fos.close();
+		fos1.close();
+		
+		System.out.println("File copied...");
+	}
+
+}
+
+
+
 
 
    
