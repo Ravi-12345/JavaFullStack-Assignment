@@ -1019,6 +1019,926 @@ public class File {
 
 }
 
+Sprint-1
+
+
+Product.java
+
+package bean;
+
+public class Product {
+private int pid;
+private String pname;
+private int price;
+public int getPid() {
+	return pid;
+}
+public void setPid(int pid) {
+	this.pid = pid;
+}
+public String getPname() {
+	return pname;
+}
+public void setPname(String pname) {
+	this.pname = pname;
+}
+public int getPrice() {
+	return price;
+}
+public void setPrice(int price) {
+	this.price = price;
+}
+
+@Override
+public String toString() {
+	return "Product [pid=" + pid + ", pname=" + pname + ", price=" + price + "]";
+}
+public Product(int pid, String pname, int price) {
+	super();
+	this.pid = pid;
+	this.pname = pname;
+	this.price = price;
+}
+public Product() {
+	super();
+	// TODO Auto-generated constructor stub
+}	
+}
+
+ProductOperation.java
+
+package operation;
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+import bean.Product;
+import service.ProductService;
+public class ProductOperation {
+	public static void main(String[] args) throws Exception {
+		ProductService ps = new ProductService();
+		// TODO Auto-generated method stub
+		int var;	
+		do {
+			
+			ArrayList<Product> l=new ArrayList<Product>();
+			//Product p;
+			Scanner sc=new Scanner(System.in);
+			System.out.println("1.Add\n2.Update\n3.Delete\n4.DisplayAll\n5.price using id\n6.exit");
+			System.out.println("choose one option");
+			var=sc.nextInt();
+			switch(var) {
+			case 1: System.out.println("enter product details id");
+					int id3=sc.nextInt();
+					sc.nextLine();
+					System.out.println("enter product detail name");
+					String pname=sc.nextLine();
+					System.out.println("enter product details like price");
+					int price=sc.nextInt();
+					int q=ps.addproduct(id3,pname,price);
+					if(q==1)
+					{
+						System.out.println("you are entering a duplicate id");
+					}
+					else
+					{
+						System.out.println("product added successfully");
+					}
+					break;
+			case 2: System.out.println("enter product id ");
+					int id=sc.nextInt();
+					System.out.println("enter  price ");
+					int price1=sc.nextInt();
+					int b=ps.update(id, price1);
+					if(b==1)
+					{
+						System.out.println("product updated successfully");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 3: System.out.println("enter index value of product id to delete");
+					int id1=sc.nextInt();
+					int c=ps.delete(id1);
+					if(c==1)
+					{
+						System.out.println("product deleted successfully");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 4:System.out.println("products details");
+			       l=ps.displayall();
+			       for(Product a:l)
+			       {
+			    	   System.out.println(l.indexOf(a)+":"+ a);
+			       }
+			       break;
+			case 5:System.out.println("enter product id to view the price");
+			       int id2=sc.nextInt();
+			       int d=ps.retrieve(id2);
+			       if(d>0)
+			       {
+			    	   System.out.println("product price is "+d);   
+			       }
+			       else
+			       {
+			    	   System.out.println("product not found");
+			       }
+			       
+			       break;
+			case 6:System.exit(0);
+			
+			default: System.out.println("enter valid option");       
+			
+			}
+					
+		}while(var<=6);
+	}
+}
+
+ProductService.java
+
+package service;
+
+import java.util.ArrayList;
+import java.util.List;
+import bean.Product;
+public class ProductService{
+		ArrayList<Product> ll=new ArrayList<Product>();	
+		Product p;
+		int i=0;
+		
+		
+		public int addproduct(int id,String Pname,int price) throws Exception {
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+		   if(flag==0)		
+				{
+					p=new Product(id,Pname,price);
+					ll.add(p);
+					return 0;
+				}
+		   else {
+			   return 1;
+		   
+			}
+			
+		}
+		public int update(int id,int price) throws Exception
+		{
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+					p.setPrice(price);
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+			if(flag==1)		
+				{
+					
+					return 1;
+				}
+			else
+				return 0;
+		}
+		public int delete(int id) throws Exception
+		{
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+					int x=ll.indexOf(p);
+					ll.remove(x);
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+			if(flag==1)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		public ArrayList<Product> displayall()
+		{
+			return ll;
+		}
+		public int retrieve(int id)
+		{
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					return p.getPrice();	
+				}
+			}
+			return 0;
+		}
+}
+
+
+Sprint-2
+
+Product.java
+
+package bean;
+import java.io.Serializable;
+public class Product implements Serializable {
+private int pid;
+private String pname;
+private int price;
+public int getPid() {
+	return pid;
+}
+public void setPid(int pid) {
+	this.pid = pid;
+}
+public String getPname() {
+	return pname;
+}
+public void setPname(String pname) {
+	this.pname = pname;
+}
+public int getPrice() {
+	return price;
+}
+public void setPrice(int price) {
+	this.price = price;
+}
+public Product() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+public Product(int pid, String pname, int price) {
+	super();
+	this.pid = pid;
+	this.pname = pname;
+	this.price = price;
+}
+@Override
+public String toString() {
+	return "Product [pid=" + pid + ", pname=" + pname + ", price=" + price + "]";
+}
+}
+
+ProductOperation.java
+
+package operation;
+import java.awt.List;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+import bean.Product;
+import service.ProductService;
+public class ProductOperation implements Serializable{
+	public static void main(String[] args) throws Exception {
+		ProductService ps = new ProductService();
+		// TODO Auto-generated method stub
+		int var;	
+		do {
+			
+			ArrayList<Product> l=new ArrayList<Product>();
+			//Product p;
+			Scanner sc=new Scanner(System.in);
+			System.out.println("1.Add\n2.Update\n3.Delete\n4.DisplayAll\n5.price using id\n6.exit");
+			System.out.println("choose one option");
+			var=sc.nextInt();
+			switch(var) {
+			case 1: System.out.println("enter product details id");
+					int id3=sc.nextInt();
+					sc.nextLine();
+					System.out.println("enter product detail name");
+					String pname=sc.nextLine();
+					System.out.println("enter product details like price");
+					int price=sc.nextInt();
+					int q=ps.addproduct(id3,pname,price);
+					if(q==1)
+					{
+						System.out.println("you are entering a duplicate id");
+					}
+					else
+					{
+						System.out.println("product added successfully");
+						System.out.println("Object Serialized");
+					}
+					break;
+			case 2: System.out.println("enter product id ");
+					int id=sc.nextInt();
+					System.out.println("enter  price ");
+					int price1=sc.nextInt();
+					int b=ps.update(id, price1);
+					if(b==1)
+					{
+						System.out.println("product updated successfully");
+						System.out.println("Object Serialized");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 3: System.out.println("enter index value of product id to delete");
+					int id1=sc.nextInt();
+					int c=ps.delete(id1);
+					if(c==1)
+					{
+						System.out.println("product deleted successfully");
+						System.out.println("Object Serialized");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 4:System.out.println("products details");
+			       l=ps.displayall();
+			       try {
+			   		FileInputStream fis = new FileInputStream("product1.txt"); 
+			   			 ObjectInputStream ois = new ObjectInputStream(fis); 
+			   			 Object obj = ois.readObject(); 
+			   			 Product p=(Product)obj;
+			   			for(Product a:l)
+						 {
+			   				System.out.println(a.getPid()+","+a.getPname()+","+a.getPrice());
+						 }
+			   			 System.out.println("Object De-Seriliazed"); 
+			   			 ois.close();
+			   			 fis.close();
+			   			} 
+			       catch (Exception e) {
+			   		System.err.println(e.toString());
+			   		} 
+			       break;
+			case 5:System.out.println("enter product id to view the price");
+			       int id2=sc.nextInt();
+			       int d=ps.retrieve(id2);
+			       if(d>0)
+			       {
+			    	   System.out.println("product price is "+d);   
+			       }
+			       else
+			       {
+			    	   System.out.println("product not found");
+			       }
+			       
+			       break;
+			case 6:System.exit(0);
+			
+			default: System.out.println("enter valid option");
+			       
+			
+			}
+					
+		}while(var<=6);
+	}
+}
+
+ProductService.java
+
+package service;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import bean.Product;
+public class ProductService implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4048523558536427746L;
+		ArrayList<Product> ll=new ArrayList<Product>();
+		FileOutputStream fosd;
+		ObjectOutputStream oos;
+		Product p;
+		
+		
+		
+		public int addproduct(int id,String Pname,int price) throws Exception {
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+		   if(flag==0)		
+				{
+					try {
+						p=new Product(id,Pname,price);
+						ll.add(p);
+						fosd =new FileOutputStream("product1.txt",true);
+						oos=new ObjectOutputStream(fosd);
+						oos.writeObject(p);
+					} catch (Exception e) {
+				
+						System.err.println(e.toString());
+					}
+					return 0;
+				}
+		   else
+		     {
+			   return 1;
+		   
+			}
+			
+		}
+		public int update(int id,int price) throws Exception
+		{
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+					p.setPrice(price);
+					fosd =new FileOutputStream("product1.txt",true);
+					oos=new ObjectOutputStream(fosd);
+					oos.writeObject(p);
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+			if(flag==1)		
+				{
+					
+					return 1;
+				}
+			else
+				return 0;
+		}
+		public int delete(int id) throws Exception
+		{
+			int flag=0;
+			try {
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					flag=1;
+					int x=ll.indexOf(p);
+					ll.remove(x);
+					fosd=new FileOutputStream("product1.txt",true);
+					oos=new ObjectOutputStream(fosd);
+					oos.writeObject(p);
+					oos.close();
+					fosd.close();
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.err.println(e.toString());
+			}
+			if(flag==1)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		public ArrayList<Product> displayall()
+		{
+			return ll;
+		}
+		public int retrieve(int id)
+		{
+			for(Product p:ll)
+			{
+				if(id==p.getPid())
+				{
+					return p.getPrice();	
+				}
+			}
+			return 0;
+		}
+		
+}
+
+Sprint-3
+
+Product.java
+package bean;
+import java.time.LocalDate;
+public class Product {
+private int pid;
+private String pname;
+private float pprice;
+//private LocalDate storedate;
+public Product() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+public int getPid() {
+	return pid;
+}
+public void setPid(int pid) {
+	this.pid = pid;
+}
+public String getPname() {
+	return pname;
+}
+public void setPname(String pname) {
+	this.pname = pname;
+}
+public float getPprice() {
+	return pprice;
+}
+public void setPprice(float pprice) {
+	this.pprice = pprice;
+}
+///public LocalDate getStoredate() {
+//	return storedate;
+//}
+//public void setStoredate(LocalDate storedate) {
+//	this.storedate = storedate;
+//}
+public Product(int pid, String pname, float pprice, LocalDate storedate) {
+	super();
+	this.pid = pid;
+	this.pname = pname;
+	this.pprice = pprice;
+	//this.storedate = storedate;
+}
+@Override
+public String toString() {
+	return "Product [pid=" + pid + ", pname=" + pname + ", pprice=" + pprice + "]";
+}
+}
+
+Dao.java
+
+package daolayer;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import bean.Product;
+
+public class Dao  {
+	List<Product> ll=new ArrayList<>();
+	
+	
+	public int addproductdao(Product p)
+	{
+		int r = 0;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			 PreparedStatement ps=con.prepareStatement("insert into product1 values(?,?,?)");
+    		 int pid=p.getPid();
+    		 String pname=p.getPname();
+    		 float pprice=p.getPprice();
+    		 ps.setInt(1,pid);
+    		 ps.setString(2,pname);
+    		ps.setFloat(3,pprice);
+    		r=ps.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.toString());
+		}
+		return r;
+		
+		}
+	
+	public int deleteProductdao(int id)
+	{
+		int r;
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+		PreparedStatement ps=con.prepareStatement("delete from product1 where pid=?");
+		ps.setInt(1, id);
+		r=ps.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.toString());
+		}
+		return 1;
+	}
+	public int updateproductdao(int id,float price)
+	{
+		int r;
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+		PreparedStatement ps=con.prepareStatement("update product1 set pprice=? where pid=?");
+		ps.setFloat(1, price);
+		ps.setInt(2, id);
+		r=ps.executeUpdate();
+		
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.toString());
+		}
+		return 1;
+	}
+	public List<Product> getdetails()
+	{
+		int r;
+		try {
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			PreparedStatement ps = con.prepareStatement("select * from product1");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setPid(rs.getInt(1));
+				p.setPname(rs.getString(2));
+				p.setPprice(rs.getFloat(3));
+				//p.setStoredate(rs.getDate(4).toLocalDate());     
+				ll.add(p);
+				
+			}
+		} catch (Exception e) {
+			System.err.println(e.toString());
+		}
+		return ll;
+	
+	}
+	
+	public float getprice(int id)
+	{
+		float val = 0;
+		try {
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			PreparedStatement ps = con.prepareStatement("select pprice from product1 where pid=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			val=rs.getFloat(1);
+			
+			}
+		 catch (Exception e) {
+			 System.err.println(e.toString());
+		 }
+		return val;
+				
+	}
+}
+
+ProductOperation.java
+
+package operation;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import bean.Product;
+import daolayer.Dao;
+import service.ProductService;
+
+public class ProductOperation {
+
+	public static void main(String[] args) throws Exception {
+		ProductService ps = new ProductService();
+		Product p ;
+		List<Product> l=new ArrayList<Product>();
+		Dao dao=new Dao();
+		
+		int var;	
+		do {
+			
+			Scanner sc=new Scanner(System.in);
+			System.out.println("1.Add\n2.Update\n3.Delete\n4.DisplayAll\n5.get price using id\n6.dispaly Products in low price\n7.dispaly Products in high price\n8.dispaly Products in asc of name\n9.dispaly Products in desc of name\n10. exit");
+			System.out.println("choose one option");
+			var=sc.nextInt();
+			switch(var) {
+			case 1: System.out.println("enter product details id");
+					p=new Product();
+					p.setPid(sc.nextInt());
+					sc.nextLine();
+					System.out.println("enter product detail name");
+					p.setPname(sc.nextLine());
+					System.out.println("enter product details like price");
+					p.setPprice(sc.nextInt());
+				//	System.out.println("enter product details like storedate");
+				//	String d=sc.next();
+				//	LocalDate ld=LocalDate.parse(d);
+				//	p.setStoredate(ld);
+					
+					int q=ps.addproduct(p);
+				//	if(p.getPprice()>500)
+				//	{
+				//		dao.addproductdao(p);
+				//	}
+					if(q==0)
+					{
+						System.out.println("you are entering product price less than 500");
+					}
+					else
+					{
+						System.out.println("product added successfully");
+					}
+					break;
+			case 2: System.out.println("enter product id ");
+					int id=sc.nextInt();
+					System.out.println("enter  price ");
+					int price1=sc.nextInt();
+					int b=ps.update(id, price1);
+					if(b==1)
+					{
+						System.out.println("product updated successfully");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 3: System.out.println("enter product id to delete");
+					int id1=sc.nextInt();
+					int c=ps.delete(id1);
+					if(c==1)
+					{
+						System.out.println("product deleted successfully");
+					}
+					else
+					{
+						System.out.println("product not found");
+					}
+					break;
+			case 4:System.out.println("products details");
+			       l=ps.displayall();
+			       l.stream().forEach(e->System.out.println(e.getPid()+","+e.getPname()+","+e.getPprice()*.2+e.getPprice()));
+			       break;
+			case 5:System.out.println("enter product id to view the price");
+			       int id2=sc.nextInt();
+			       float d1=ps.retrieve(id2);
+			       if(d1>0)
+			       {
+			    	   System.out.println("product price is "+d1);   
+			       }
+			       else
+			       {
+			    	   System.out.println("product not found");
+			       }
+			       
+			       break;
+		   case 6:l.stream().map(e->e.getPprice()).sorted().forEach(v->System.out.println(v));
+		   		  break;
+		   case 7:l.stream().map(e->e.getPprice()).sorted(Comparator.reverseOrder()).forEach(v->System.out.println(v));
+		   		  break;
+		   case 8:l.stream().map(e->e.getPname()).sorted().forEach(v->System.out.println(v));
+		   		  break;
+		   case 9:l.stream().map(e->e.getPname()).sorted(Comparator.reverseOrder()).forEachOrdered(v->System.out.println(v));
+		   		  break;
+			case 10:System.exit(0);
+						
+			default: System.out.println("enter valid option");       
+			
+			}
+					
+		}while(var<=10);
+	}
+
+}
+
+ProductService.java
+
+package service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.Product;
+import daolayer.Dao;
+
+public class ProductService {
+	 List<Product> l=new ArrayList<>();
+	 Dao d=new Dao();
+	 
+     public int addproduct(Product q)
+     {
+    	 int res;
+    	 if(q.getPprice()>500)
+    	 {
+    		
+    		res=d.addproductdao(q);
+    		if(res>0)
+    		{
+    		return 1;
+    		}
+    		 else
+        	 {
+        		return 0; 
+        	 }		 
+    	 }
+    	 else
+    	 {
+    		return 0; 
+    	 }
+    	  	 
+     }
+     public int update(int id,int price) throws Exception
+		{
+			int flag=0;
+			flag=d.updateproductdao(id, price);
+			if(flag==1)		
+				{
+					
+					return 1;
+				}
+			else
+				return 0;
+		}
+		public int delete(int id) throws Exception
+		{
+			int flag=0;
+			flag=d.deleteProductdao(id);
+			if(flag==1)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		public List<Product> displayall()
+		{
+			l=d.getdetails();
+			return l;
+		}
+		public float retrieve(int id)
+		{
+			float price=d.getprice(id);
+			return price;
+		}
+
+}
+
 
 
 
