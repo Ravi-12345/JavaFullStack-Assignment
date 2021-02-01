@@ -1648,7 +1648,7 @@ public class Dao  {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "raviS123$");
 			 PreparedStatement ps=con.prepareStatement("insert into product1 values(?,?,?)");
     		 int pid=p.getPid();
     		 String pname=p.getPname();
@@ -1671,7 +1671,7 @@ public class Dao  {
 		int r;
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "raviS123$");
 		PreparedStatement ps=con.prepareStatement("delete from product1 where pid=?");
 		ps.setInt(1, id);
 		r=ps.executeUpdate();
@@ -1687,7 +1687,7 @@ public class Dao  {
 		int r;
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "raviS123$");
 		PreparedStatement ps=con.prepareStatement("update product1 set pprice=? where pid=?");
 		ps.setFloat(1, price);
 		ps.setInt(2, id);
@@ -1706,7 +1706,7 @@ public class Dao  {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "raviS123$");
 			PreparedStatement ps = con.prepareStatement("select * from product1");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -1731,7 +1731,7 @@ public class Dao  {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "Ink@2120");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "raviS123$");
 			PreparedStatement ps = con.prepareStatement("select pprice from product1 where pid=?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
